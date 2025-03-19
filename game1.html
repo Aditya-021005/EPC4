@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seconds to Survive - Game</title>
     <style>
-        /* General Styling */
+         /* General Styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #1c0032;
@@ -20,7 +20,8 @@
             background: url('23983.jpg') no-repeat center center fixed;
             background-size: cover;
         }
-        .timer.active {
+/* Glowing Timer Ring */
+.timer.active {
     box-shadow: 0 0 20px #ffd700, 0 0 40px #ff8c00;
     border: 3px solid #ffd700;
 }
@@ -45,6 +46,7 @@
 .winner-container {
     animation: neonGlow 2s infinite;
 }
+
         /* Game Container */
         .game-container {
     background-color: rgba(255, 255, 255, 0.1); /* Very light white tint */
@@ -305,6 +307,289 @@
     background-color: #8a2be2;
     transform: translateY(-3px);
 }
+/* Game Container with Frosted Glass Effect + Neon Glow */
+.game-container {
+    background: rgba(255, 255, 255, 0.08); /* Frosted glass effect */
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 2s infinite ease-in-out;
+    z-index: 1;
+}
+
+/* Neon Glow Effect */
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, #ff00ff, #ff4500, #ffd700, #8a2be2);
+    background-size: 300% 300%;
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0.7;
+    border-radius: 24px;
+    animation: neonGlow 6s ease infinite;
+}
+
+/* Hover Effect */
+.game-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 0, 255, 0.6);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    }
+}
+
+/* Animated Gradient for Neon Glow */
+@keyframes neonGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Timer Styling with Glow */
+.timer {
+    font-size: 28px;
+    font-weight: bold;
+    background-color: #ffd700;
+    color: #1c0032;
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: inline-block;
+    margin: 5px 10px;
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Timer Warning Glow */
+.timer.warning {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    border-color: #ff0000;
+    animation: pulseRed 1s infinite;
+}
+
+@keyframes pulseRed {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        transform: scale(1);
+    }
+}
+
+/* Parallax Mouse Movement Effect */
+body {
+    perspective: 1000px;
+}
+
+.game-container {
+    transform: translateZ(0);
+    transition: transform 0.3s ease;
+}
+
+body:hover .game-container {
+    transform: translateZ(50px);
+}
+
+/* Image Styling with Glow */
+.question-img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    border: 3px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    transition: box-shadow 0.3s ease;
+}
+
+.question-img:hover {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+}
+
+/* Buttons Stay the Same */
+/* High-Intensity Game Background */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: radial-gradient(circle at top right, #1c0032, #4b0082, #ff00ff, #ff4500);
+    background-size: 300% 300%;
+    animation: gameWave 8s ease infinite;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Fast-Moving Background Animation */
+@keyframes gameWave {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Light Wave Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.1), rgba(0, 0, 0, 0));
+    transform: rotate(0deg);
+    animation: rotateWave 6s linear infinite;
+    z-index: -2;
+}
+
+@keyframes rotateWave {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0.4;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0.6;
+    }
+}
+
+/* Floating Orbs */
+.orb {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #ff00ff, rgba(255, 0, 255, 0));
+    border-radius: 50%;
+    opacity: 0.4;
+    z-index: -1;
+    animation: floatOrb 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(30px, -30px) scale(1.2);
+        opacity: 1;
+    }
+}
+/* High-Contrast Game Background */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(135deg, #1c0032, #200040, #400080, #ff0080);
+    background-size: 300% 300%;
+    animation: backgroundWave 8s ease infinite;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Animation */
+@keyframes backgroundWave {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Game Container with Frosted Glass and Sharp Neon Glow */
+.game-container {
+    background: rgba(10, 10, 30, 0.9); /* DARKER container for contrast */
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.6); /* Sharper glow */
+    border: 2px solid rgba(255, 0, 255, 0.4);
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Glow Effect */
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #ff00ff, #ff4500, #ff0080);
+    background-size: 400% 400%;
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0.8;
+    border-radius: 24px;
+    animation: neonFlow 4s ease infinite;
+}
+
+@keyframes neonFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hover Effect */
+.game-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 60px rgba(255, 0, 255, 0.8);
+}
+
+/* Dynamic Light Streaks */
+.streak {
+    position: fixed;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(180deg, #ff00ff, #ff0080, transparent);
+    opacity: 0.7;
+    z-index: -2;
+    animation: streakMove 3s linear infinite;
+}
+
+@keyframes streakMove {
+    from {
+        transform: translateY(-150vh) translateX(-30vw);
+    }
+    to {
+        transform: translateY(150vh) translateX(30vw);
+    }
+}
 /* High-Contrast Game Background */
 body {
     font-family: 'Press Start 2P', cursive;
@@ -415,6 +700,36 @@ body {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+}
+@media (max-width: 768px) {
+    .game-container {
+        padding: 30px;
+        max-width: 500px;
+    }
+    
+    .back-btn {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 480px) {
+    .game-container {
+        padding: 20px;
+        max-width: 90%;
+        border-radius: 16px;
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    }
+
+    .back-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    h1, h2 {
+        font-size: 18px;
+    }
 }
 
 
