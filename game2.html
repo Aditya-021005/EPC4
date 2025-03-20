@@ -826,14 +826,21 @@ function correctAnswer() {
     switchUser();
 }
 
-
 function wrongAnswer() {
     document.getElementById("wrong-sound").play();
-    timers[currentUser] -= 5; // Time penalty for wrong answer
+
+    // ✅ Subtract 5 points for wrong answer
+    scores[currentUser] -= 5;
+
+    // ✅ Prevent negative scores
+    if (scores[currentUser] < 0) {
+        scores[currentUser] = 0;
+    }
+
+    timers[currentUser] -= 5; // Keep the existing time penalty
+
     updateUI();
     showAnswer(false);
-
-    // DO NOT SWITCH USER (User stays the same)
 }
 
 function showAnswer(isCorrect) {
